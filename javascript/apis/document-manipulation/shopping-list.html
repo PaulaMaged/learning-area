@@ -31,7 +31,34 @@
     </ul>
 
     <script>
+        const label = document.querySelector("label");
+        const input = document.querySelector("input");
+        const button = document.querySelector("button");
+        const itemList = document.querySelector("ul");
 
+        button.addEventListener("click", (e) => {
+          const itemValue = input.value;
+          displayItem(itemValue);
+          input.value = "";
+          input.focus();
+        });
+
+        function displayItem(itemValue) {
+          const item = document.createElement("li");
+
+          const itemName = document.createElement("span");
+          itemName.textContent = itemValue;
+          itemName.style.cssText = "font-size= 18px; font-weight: bold";
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "delete";
+          deleteButton.style.color = "red";
+          deleteButton.addEventListener('click', () => itemList.removeChild(item));
+
+          item.append(itemName, deleteButton);
+
+          itemList.appendChild(item);
+        }
     </script>
   </body>
 </html>
